@@ -1,0 +1,16 @@
+version: "2"
+services:
+ wg-vpn:
+  container_name: wg-vpn-app
+  build: ./app 
+  image: wireguard-docker
+  volumes:
+   - /etc/wireguard:/etc/wireguard
+  networks:
+   - default
+  ports:
+   - 443:5555/udp
+  restart: always
+  cap_add:
+   - NET_ADMIN
+   - SYS_MODULE
