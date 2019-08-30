@@ -1,5 +1,5 @@
 # wireguard-docker
-wireguard docker implementation based on https://github.com/cmulk/wireguard-docker
+wireguard docker implementation fpr debian stretch based on https://github.com/cmulk/wireguard-docker
 
 * place/edit wireguard config files in /etc/wireguard in host fs
 * modify incomming port in docker-compose.yaml if you want to change it (port 443/udp default)
