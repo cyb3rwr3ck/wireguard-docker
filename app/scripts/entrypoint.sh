@@ -13,11 +13,15 @@ for interface in $interfaces; do
     wg-quick up $interface
 done
 
-# Add masquerade rule for NAT'ing VPN traffic bound for the Internet
-echo "Adding iptables NAT rule"
+#Start unbound dns daemon
+echo "$(date): Starting unbound"
+service unbound start
+
+#Add masquerade rule for NAT'ing VPN traffic bound for the Internet
+echo "$(date): Adding iptables NAT rule"
 iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 
-# Handle shutdown behavior
+#Handle shutdown behavior
 finish () {
     echo "$(date): Shutting down Wireguard"
     for interface in $interfaces; do
