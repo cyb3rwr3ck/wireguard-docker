@@ -7,14 +7,14 @@ RUN echo "deb http://deb.debian.org/debian/ unstable main" > /etc/apt/sources.li
 #Upgrade packages and install needed ones
 RUN apt update && \
  apt upgrade -y && \
- apt install -y --no-install-recommends wireguard-tools iptables unbound unbound-host curl && \
+ apt install -y --no-install-recommends wireguard-tools iptables unbound unbound-host wget ca-certificates && \
  apt clean
 
 #Download root hints for unbound
-RUN curl -o /var/lib/unbound/root.hints https://www.internic.net/domain/named.cache
+RUN wget -O /var/lib/unbound/root.hints https://www.internic.net/domain/named.cache
 
 #Configure log and set permissions for unbound deamon
-touch /etc/unbound/unbound.log && \
+RUN touch /etc/unbound/unbound.log && \
  chown unbound:unbound /etc/unbound/unbound.log && \
  chown -R unbound:unbound /var/lib/unbound
 
@@ -26,4 +26,4 @@ RUN chmod 755 /scripts/*
 COPY config/unbound.conf /etc/unbound
 
 #Run the services
-CMD ["entrypoint.sh"]
+ENTRYPOINT ["entrypoint.sh"]
