@@ -20,7 +20,7 @@ DNS = 10.100.100.1
 
 [Peer]
 PublicKey = <PubKey goes here>
-#FullTunnel Mode
+#FullTunnel Mode with IPv6 for preventing leaks
 AllowedIPs = 0.0.0.0/0, ::/0
 Endpoint = 1.2.3.4:443
 PersistentKeepalive = 25
@@ -41,4 +41,4 @@ AllowedIPs = 10.100.100.2/32
 Credits to:
 * https://github.com/cmulk/wireguard-docker
 * https://www.ckn.io/blog/2017/11/14/wireguard-vpn-typical-setup/
-sss
+
